@@ -1,6 +1,6 @@
 import { Route, Switch } from 'wouter'
 import { HomeRoute } from './routes/home'
-import { getStoredUsername, NewUserRoute } from './routes/new-user'
+import { getStoredUsername, NewUserRoute, setStoredUsername } from './routes/new-user'
 import { createRoot } from 'react-dom/client';
 import { StrictMode, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -56,6 +56,12 @@ export function App() {
       </QueryClientProvider>
     </trpc.Provider>
   )
+}
+
+const username = getStoredUsername();
+
+if (!username) {
+  setStoredUsername('anon-' + Math.random().toString(36).substring(2, 9));
 }
 
 const root = createRoot(document.getElementById('root') as HTMLElement);

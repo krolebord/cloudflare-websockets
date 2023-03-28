@@ -9,7 +9,7 @@ export function useUsername() {
   return getStoredUsername() ?? '';
 }
 
-function setStoredUsername(username: string) {
+export function setStoredUsername(username: string) {
   localStorage.setItem('username', username);
 }
 
